@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/styles.css">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blog</title>
+</head>
+<body>
+
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col"><h1  class="mb-4">Blog Articles</h1></div>
+      <div class="col">
+          <div id="clockContainer">
+              <div id="hour"></div>
+              <div id="minute"></div>
+              <div id="second"></div>
+          </div>
+      </div>
+    </div>
+
+    <a href="/articles/new"><button type="button" class="btn btn-outline-success"><i class="fas fa-plus"></i>   New Article</button></a>
+
+    <% articles.forEach(article => { %>
+      <div class="card mt-4">
+        <div class="card-body main">
+          <h4 class="card-title"><%= article.title %></h4>
+
+          <div class="card-subtitle text-muted mb-2">
+            <%= article.createdAt.toLocaleDateString() %>
+          </div>
+          <div class="card-text mb-2"><%= article.description %></div>
+          <a href="articles/<%= article.slug %>" class="btn btn-outline-primary"><i class="fas fa-book-reader"></i>      Read More</a>
+          <a href="articles/edit/<%= article.id %>" class="btn btn-outline-info"><i class="fas fa-edit"></i>      Edit</a>
+          <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i>      Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+
+<script src="index.js" charset="utf-8"></script>
+
+</body>
+</html>
